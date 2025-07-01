@@ -6,6 +6,10 @@ export const CartApp = () => {
 
     const [cartItems, setCartItems] = useState([]);
 
+    const handleRemoveFromCart = (id) => {
+        setCartItems([...cartItems.filter(item => item.id !== id)]);
+    }
+
     const handleAddToCart = (product) => {
         const hasItem = cartItems.find(item => item.id === product.id);
         if (hasItem) {
@@ -22,10 +26,12 @@ export const CartApp = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container my-5">
                 <h1>Shopping cart</h1>
+                {cartItems.length <= 0 || (
+                    <CartView items={cartItems} handleRemoveFromCart={handleRemoveFromCart}/>
+                )}
                 <CatalogView handler={handleAddToCart}/>
-                <CartView items={cartItems}/>
             </div>
         </>
     )
