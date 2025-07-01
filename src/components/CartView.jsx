@@ -7,11 +7,11 @@ export const CartView = ({items, handleRemoveFromCart}) => {
 
     useEffect(() => {
         setGetTotal(getCalculeTotal(items));
+        sessionStorage.setItem('cart', JSON.stringify(items));
     }, [items]);
 
     const onDeleteProduct = (id) => {
         handleRemoveFromCart(id);
-
     }
 
     return (

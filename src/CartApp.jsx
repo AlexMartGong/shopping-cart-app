@@ -2,9 +2,11 @@ import {CatalogView} from "./components/CatalogView.jsx";
 import {CartView} from "./components/CartView.jsx";
 import {useState} from "react";
 
+const initialCart = JSON.parse((sessionStorage.getItem('cart') || '[]'));
+
 export const CartApp = () => {
 
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState(initialCart);
 
     const handleRemoveFromCart = (id) => {
         setCartItems([...cartItems.filter(item => item.id !== id)]);
