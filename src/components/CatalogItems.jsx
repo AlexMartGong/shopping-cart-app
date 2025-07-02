@@ -1,7 +1,12 @@
+import {useNavigate} from "react-router-dom";
+
 export const CatalogItems = ({id, name, description, price, handler}) => {
+
+    const navigate = useNavigate();
 
     const onAddToCart = (product) => {
         handler(product);
+        navigate('/cart');
     }
 
     return (

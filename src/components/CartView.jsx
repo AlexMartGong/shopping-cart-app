@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
 import {getCalculeTotal} from "../services/productService.js";
+import {useNavigate} from "react-router-dom";
 
 export const CartView = ({items, handleRemoveFromCart}) => {
 
     const [getTotal, setGetTotal] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setGetTotal(getCalculeTotal(items));
@@ -13,8 +15,16 @@ export const CartView = ({items, handleRemoveFromCart}) => {
         handleRemoveFromCart(id);
     }
 
+    const onContinueShopping = () => {
+        navigate('/');
+    }
+
     return (
         <>
+            <button className="btn btn-secondary mb-4" onClick={onContinueShopping}>
+                Continue Shopping
+            </button>
+            <h2 className="mb-4">Your Cart</h2>
             <table className="table table-striped table-bordered table-hover table-responsive">
                 <thead>
                 <tr>
